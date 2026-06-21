@@ -41,11 +41,49 @@ def mergeSort(list_to_sort_by_merge):
 
 import matplotlib.pyplot as plt
 
-my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-x = range(len(my_list))
-plt.plot(x, my_list)
-plt.show()
-mergeSort(my_list)
-x = range(len(my_list))
-plt.plot(x, my_list)
-plt.show()
+def main():
+    # Visualisierung des Beispielaufrufs in einem Plot
+    my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+    
+    # Kopie für 
+    unsorted_list = my_list.copy()
+
+    # Erstelle die Grafik mit zwei Subplots in einer Reihe
+    plt.figure(figsize=(12, 5))
+
+    # Plot 1: Unsortierte Liste
+    plt.subplot(1, 2, 1)
+    x = range(len(unsorted_list))
+    plt.bar(x, unsorted_list)
+    plt.title("Unsortierte Liste", fontsize=14, fontweight='bold')
+    plt.xlabel("Index", fontsize=12)
+    plt.ylabel("Wert", fontsize=12)
+    plt.grid(True, alpha=0.3)
+    plt.xlim(-0.5, len(unsorted_list) - 0.5)  # Gleiche x-Achse für beide Plots
+    plt.ylim(min(unsorted_list) - 10, max(unsorted_list) + 10)  # Gleiche y-Achse
+
+    # Plot 2: Sortierte Liste
+    plt.subplot(1, 2, 2)
+    mergeSort(my_list)  # Sortiere die Liste
+    plt.bar(x, my_list, color='orange') 
+    plt.title("Sortierte Liste (Mergesort)", fontsize=14, fontweight='bold')
+    plt.xlabel("Index", fontsize=12)
+    plt.ylabel("Wert", fontsize=12)
+    plt.grid(True, alpha=0.3)
+    plt.xlim(-0.5, len(my_list) - 0.5)
+    plt.ylim(min(unsorted_list) - 10, max(unsorted_list) + 10)  # Gleiche y-Achse
+
+    # Überschrift für die gesamte Grafik
+    plt.suptitle("Vergleich: Unsortiert vs. Sortiert (Mergesort)",
+                fontsize=16, fontweight='bold', y=1.02)
+
+    # Automatische Anpassung der Layouts
+    plt.tight_layout()
+
+    # Anzeigen der Grafik
+    plt.show()
+
+    return
+
+if __name__ == "__main__":
+    main()
